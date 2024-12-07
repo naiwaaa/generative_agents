@@ -3,6 +3,7 @@
 File: perceive.py
 Description: This defines the "Perceive" module for generative agents.
 """
+
 from __future__ import annotations
 
 import sys
@@ -10,6 +11,7 @@ import sys
 
 sys.path.append("../../")
 
+import math
 from operator import itemgetter
 
 from global_methods import *
