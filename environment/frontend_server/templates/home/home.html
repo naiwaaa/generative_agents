@@ -11,21 +11,21 @@
 		<h3 style="margin-bottom:-0.5em; font-size:1.5em">Current Time:</h3>
 		<div class="row">
 			<div class="col-md-8" id="game-time" style="">
-				<h2><span id="game-time-content"></span></h2> 
+				<h2><span id="game-time-content"></span></h2>
 			</div>
 			<div class="col-md-4">
-				
+
 				<h2 style="text-align: right; {% if mode == 'simulate' %} display: none {% endif %}">
 					<button id="play_button" type="button" class="btn btn-default">
 				    <strong style=" font-size:1.2em"><i class="glyphicon glyphicon-play"></i> &nbsp;Play</strong>
 				  </button>
-				  
+
 				  <button id="pause_button" type="button" class="btn btn-default">
 				    <strong style=" font-size:1.2em"><i class="glyphicon glyphicon-pause"></i> &nbsp;Pause</strong>
 				  </button>
 
 				</h2>
-				
+
 			</div>
 		</div>
 
@@ -53,19 +53,19 @@
 					  <p style="font-size:1.2em"><strong>Current Conversation:</strong> <br><span id="chat__{{ p_name_os }}"></span></p>
 					</div>
 			  </div>
-			</div>	
+			</div>
 			<br>
 		{% endfor %}
 
 
 
 
-		
+
 
 	</div>
 </div>
 
-  
+
 
 
 
@@ -76,4 +76,3 @@
 <script src='https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js'></script>
 {% include 'home/main_script.html' %}
 {% endblock content %}
-
