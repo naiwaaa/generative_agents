@@ -1,5 +1,4 @@
-###FOR PUSHING STATIC TO AWS 
-
+# FOR PUSHING STATIC TO AWS
 
 
 # from .base import *
@@ -8,26 +7,21 @@
 # try:
 #   from .local import *
 # except:
-  # pass
+# pass
 
 
-
-
-
-
-###FOR GENERAL USES
-
-
-
-
+# FOR GENERAL USES
+from __future__ import annotations
 
 from .base import *
 
-try: 
-  from .local import *
-  live = False
+
+try:
+    from .local import *
+
+    live = False
 except:
-  live = True
+    live = True
 
 if live:
-  from .production import *
+    from .production import *

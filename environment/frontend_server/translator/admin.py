@@ -1,2 +1,3 @@
-from django.contrib import admin
+from __future__ import annotations
+
 from .models import *
