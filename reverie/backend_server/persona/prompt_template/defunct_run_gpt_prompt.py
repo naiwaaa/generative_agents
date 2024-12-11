@@ -6,6 +6,7 @@ interface with the safe_generate_response function.
 
 Note (March 10, 2023) -- Defunct
 """
+
 from __future__ import annotations
 
 import re
@@ -75,8 +76,7 @@ def run_gpt_prompt_wake_up_hour(persona, test_input=None, verbose=False):
         fs = 8
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-002",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 5,
         "temperature": 0.8,
         "top_p": 1,
@@ -84,7 +84,7 @@ def run_gpt_prompt_wake_up_hour(persona, test_input=None, verbose=False):
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": ["\n"],
-    }
+    })
     prompt_template = "persona/prompt_template/v2/wake_up_hour_v1.txt"
     prompt_input = create_prompt_input(persona, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -155,8 +155,7 @@ def run_gpt_prompt_daily_plan(persona, wake_up_hour, test_input=None, verbose=Fa
         ]
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 500,
         "temperature": 1,
         "top_p": 1,
@@ -164,7 +163,7 @@ def run_gpt_prompt_daily_plan(persona, wake_up_hour, test_input=None, verbose=Fa
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/daily_planning_v6.txt"
     prompt_input = create_prompt_input(persona, wake_up_hour, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -265,8 +264,7 @@ def run_gpt_prompt_generate_hourly_schedule(
         fs = "asleep"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 50,
         "temperature": 0.5,
         "top_p": 1,
@@ -274,7 +272,7 @@ def run_gpt_prompt_generate_hourly_schedule(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": ["\n"],
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_hourly_schedule_v2.txt"
     prompt_input = create_prompt_input(
         persona, curr_hour_str, p_f_ds_hourly_org, hour_str, intermission2, test_input
@@ -428,8 +426,7 @@ def run_gpt_prompt_task_decomp(persona, task, duration, test_input=None, verbose
         fs = ["asleep"]
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 1000,
         "temperature": 0,
         "top_p": 1,
@@ -437,7 +434,7 @@ def run_gpt_prompt_task_decomp(persona, task, duration, test_input=None, verbose
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/task_decomp_v3.txt"
     prompt_input = create_prompt_input(persona, task, duration)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -551,8 +548,7 @@ def run_gpt_prompt_action_sector(
         fs = "kitchen"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-002",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 15,
         "temperature": 0,
         "top_p": 1,
@@ -560,7 +556,7 @@ def run_gpt_prompt_action_sector(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v1/action_location_sector_v2.txt"
     prompt_input = create_prompt_input(action_description, persona, maze)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -642,8 +638,7 @@ def run_gpt_prompt_action_arena(
         fs = "kitchen"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 15,
         "temperature": 0,
         "top_p": 1,
@@ -651,7 +646,7 @@ def run_gpt_prompt_action_arena(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v1/action_location_object_v1.txt"
     prompt_input = create_prompt_input(
         action_description, persona, maze, act_world, act_sector
@@ -702,8 +697,7 @@ def run_gpt_prompt_action_game_object(
         fs = "bed"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 15,
         "temperature": 0,
         "top_p": 1,
@@ -711,7 +705,7 @@ def run_gpt_prompt_action_game_object(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v1/action_object_v2.txt"
     prompt_input = create_prompt_input(
         action_description, persona, temp_address, test_input
@@ -766,8 +760,7 @@ def run_gpt_prompt_pronunciatio(action_description, persona, verbose=False):
         fs = "😋"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 15,
         "temperature": 0,
         "top_p": 1,
@@ -775,7 +768,7 @@ def run_gpt_prompt_pronunciatio(action_description, persona, verbose=False):
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": ["\n"],
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_pronunciatio_v1.txt"
     prompt_input = create_prompt_input(action_description)
 
@@ -819,8 +812,7 @@ def run_gpt_prompt_event_triple(action_description, persona, verbose=False):
         fs = (persona.name, "is", "idle")
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 30,
         "temperature": 0,
         "top_p": 1,
@@ -828,7 +820,7 @@ def run_gpt_prompt_event_triple(action_description, persona, verbose=False):
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": ["\n"],
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_event_triple_v1.txt"
     prompt_input = create_prompt_input(action_description, persona)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -874,8 +866,7 @@ def run_gpt_prompt_act_obj_desc(act_game_object, act_desp, persona, verbose=Fals
         fs = f"{act_game_object} is idle"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 30,
         "temperature": 0,
         "top_p": 1,
@@ -883,7 +874,7 @@ def run_gpt_prompt_act_obj_desc(act_game_object, act_desp, persona, verbose=Fals
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": ["\n"],
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_obj_event_v1.txt"
     prompt_input = create_prompt_input(act_game_object, act_desp, persona)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -925,8 +916,7 @@ def run_gpt_prompt_act_obj_event_triple(
         fs = (act_game_object, "is", "idle")
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 30,
         "temperature": 0,
         "top_p": 1,
@@ -934,7 +924,7 @@ def run_gpt_prompt_act_obj_event_triple(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": ["\n"],
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_event_triple_v1.txt"
     prompt_input = create_prompt_input(act_game_object, act_obj_desc)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1094,8 +1084,7 @@ def run_gpt_prompt_new_decomp_schedule(
 
         return ret
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 1000,
         "temperature": 0,
         "top_p": 1,
@@ -1103,7 +1092,7 @@ def run_gpt_prompt_new_decomp_schedule(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/new_decomp_schedule_v1.txt"
     prompt_input = create_prompt_input(
         persona,
@@ -1215,8 +1204,7 @@ def run_gpt_prompt_decide_to_talk(
         fs = "yes"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 20,
         "temperature": 0,
         "top_p": 1,
@@ -1224,7 +1212,7 @@ def run_gpt_prompt_decide_to_talk(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/decide_to_talk_v2.txt"
     prompt_input = create_prompt_input(persona, target_persona, retrieved, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1336,8 +1324,7 @@ def run_gpt_prompt_decide_to_react(
         fs = "3"
         return fs
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 20,
         "temperature": 0,
         "top_p": 1,
@@ -1345,7 +1332,7 @@ def run_gpt_prompt_decide_to_react(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/decide_to_react_v1.txt"
     prompt_input = create_prompt_input(persona, target_persona, retrieved, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1489,8 +1476,7 @@ def run_gpt_prompt_create_conversation(
         convo = [[init_persona.name, "Hi!"], [target_persona.name, "Hi!"]]
         return convo
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 1000,
         "temperature": 0.7,
         "top_p": 1,
@@ -1498,7 +1484,7 @@ def run_gpt_prompt_create_conversation(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/create_conversation_v2.txt"
     prompt_input = create_prompt_input(persona, target_persona, curr_loc, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1541,8 +1527,7 @@ def run_gpt_prompt_summarize_conversation(
     def get_fail_safe():
         return "conversing with a housemate about morning greetings"
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 50,
         "temperature": 0,
         "top_p": 1,
@@ -1550,7 +1535,7 @@ def run_gpt_prompt_summarize_conversation(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/summarize_conversation_v1.txt"
     prompt_input = create_prompt_input(conversation, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1602,8 +1587,7 @@ def run_gpt_prompt_extract_keywords(persona, description, test_input=None, verbo
     def get_fail_safe():
         return []
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 50,
         "temperature": 0,
         "top_p": 1,
@@ -1611,7 +1595,7 @@ def run_gpt_prompt_extract_keywords(persona, description, test_input=None, verbo
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/get_keywords_v1.txt"
     prompt_input = create_prompt_input(description, test_input)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1650,8 +1634,7 @@ def run_gpt_prompt_keyword_to_thoughts(
     def get_fail_safe():
         return ""
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 40,
         "temperature": 0.7,
         "top_p": 1,
@@ -1659,7 +1642,7 @@ def run_gpt_prompt_keyword_to_thoughts(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/keyword_to_thoughts_v1.txt"
     prompt_input = create_prompt_input(persona, keyword, concept_summary)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1712,8 +1695,7 @@ def run_gpt_prompt_convo_to_thoughts(
     def get_fail_safe():
         return ""
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 40,
         "temperature": 0.7,
         "top_p": 1,
@@ -1721,7 +1703,7 @@ def run_gpt_prompt_convo_to_thoughts(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/convo_to_thoughts_v1.txt"
     prompt_input = create_prompt_input(
         init_persona_name, target_persona_name, convo_str, fin_target
@@ -1767,8 +1749,7 @@ def run_gpt_prompt_event_poignancy(
     def get_fail_safe():
         return 4
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 3,
         "temperature": 0,
         "top_p": 1,
@@ -1776,7 +1757,7 @@ def run_gpt_prompt_event_poignancy(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/poignancy_event_v1.txt"
     prompt_input = create_prompt_input(persona, event_description)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1820,8 +1801,7 @@ def run_gpt_prompt_thought_poignancy(
     def get_fail_safe():
         return 4
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 3,
         "temperature": 0,
         "top_p": 1,
@@ -1829,7 +1809,7 @@ def run_gpt_prompt_thought_poignancy(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/poignancy_thought_v1.txt"
     prompt_input = create_prompt_input(persona, event_description)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1873,8 +1853,7 @@ def run_gpt_prompt_chat_poignancy(
     def get_fail_safe():
         return 4
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 3,
         "temperature": 0,
         "top_p": 1,
@@ -1882,7 +1861,7 @@ def run_gpt_prompt_chat_poignancy(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/poignancy_chat_v1.txt"
     prompt_input = create_prompt_input(persona, event_description)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1922,8 +1901,7 @@ def run_gpt_prompt_focal_pt(persona, statements, n, test_input=None, verbose=Fal
     def get_fail_safe(n):
         return ["Who am I"] * n
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 150,
         "temperature": 0,
         "top_p": 1,
@@ -1931,7 +1909,7 @@ def run_gpt_prompt_focal_pt(persona, statements, n, test_input=None, verbose=Fal
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_focal_pt_v1.txt"
     prompt_input = create_prompt_input(persona, statements, n)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -1978,8 +1956,7 @@ def run_gpt_prompt_insight_and_guidance(
     def get_fail_safe(n):
         return ["I am hungry"] * n
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 150,
         "temperature": 0.5,
         "top_p": 1,
@@ -1987,7 +1964,7 @@ def run_gpt_prompt_insight_and_guidance(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/insight_and_evidence_v1.txt"
     prompt_input = create_prompt_input(persona, statements, n)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -2034,8 +2011,7 @@ def run_gpt_prompt_agent_chat_summarize_ideas(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 150,
         "temperature": 0.5,
         "top_p": 1,
@@ -2043,7 +2019,7 @@ def run_gpt_prompt_agent_chat_summarize_ideas(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/summarize_chat_ideas_v1.txt"
     prompt_input = create_prompt_input(persona, target_persona, statements, curr_context)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -2081,8 +2057,7 @@ def run_gpt_prompt_agent_chat_summarize_relationship(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 150,
         "temperature": 0.5,
         "top_p": 1,
@@ -2090,7 +2065,7 @@ def run_gpt_prompt_agent_chat_summarize_relationship(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/summarize_chat_relationship_v1.txt"
     prompt_input = create_prompt_input(persona, target_persona, statements)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -2188,8 +2163,7 @@ def run_gpt_prompt_agent_chat(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 2000,
         "temperature": 0.7,
         "top_p": 1,
@@ -2197,7 +2171,7 @@ def run_gpt_prompt_agent_chat(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/agent_chat_v1.txt"
     prompt_input = create_prompt_input(
         persona, target_persona, curr_context, init_summ_idea, target_summ_idea
@@ -2237,8 +2211,7 @@ def run_gpt_prompt_summarize_ideas(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 150,
         "temperature": 0.5,
         "top_p": 1,
@@ -2246,7 +2219,7 @@ def run_gpt_prompt_summarize_ideas(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/summarize_ideas_v1.txt"
     prompt_input = create_prompt_input(persona, statements, question)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -2299,8 +2272,7 @@ def run_gpt_prompt_generate_next_convo_line(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 250,
         "temperature": 1,
         "top_p": 1,
@@ -2308,7 +2280,7 @@ def run_gpt_prompt_generate_next_convo_line(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/generate_next_convo_line_v1.txt"
     prompt_input = create_prompt_input(
         persona, interlocutor_desc, prev_convo, retrieved_summary
@@ -2348,8 +2320,7 @@ def run_gpt_prompt_generate_whisper_inner_thought(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 50,
         "temperature": 0,
         "top_p": 1,
@@ -2357,7 +2328,7 @@ def run_gpt_prompt_generate_whisper_inner_thought(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/whisper_inner_thought_v1.txt"
     prompt_input = create_prompt_input(persona, whisper)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -2400,8 +2371,7 @@ def run_gpt_prompt_planning_thought_on_convo(
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 50,
         "temperature": 0,
         "top_p": 1,
@@ -2409,7 +2379,7 @@ def run_gpt_prompt_planning_thought_on_convo(
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/planning_thought_on_convo_v1.txt"
     prompt_input = create_prompt_input(persona, all_utt)
     prompt = generate_prompt(prompt_input, prompt_template)
@@ -2450,8 +2420,7 @@ def run_gpt_prompt_memo_on_convo(persona, all_utt, test_input=None, verbose=Fals
     def get_fail_safe():
         return "..."
 
-    gpt_param = {
-        "engine": "text-davinci-003",
+    gpt_param = LLMParameters.model_validate({
         "max_tokens": 50,
         "temperature": 0,
         "top_p": 1,
@@ -2459,7 +2428,7 @@ def run_gpt_prompt_memo_on_convo(persona, all_utt, test_input=None, verbose=Fals
         "frequency_penalty": 0,
         "presence_penalty": 0,
         "stop": None,
-    }
+    })
     prompt_template = "persona/prompt_template/v2/memo_on_convo_v1.txt"
     prompt_input = create_prompt_input(persona, all_utt)
     prompt = generate_prompt(prompt_input, prompt_template)

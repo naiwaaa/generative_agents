@@ -11,6 +11,11 @@ dependencies = [
     "openai>=1.57.0",
     "selenium>=4.27.1",
     "django-storages>=1.14.4",
+    "pydantic-settings>=2.6.1",
+    "loguru>=0.7.3",
+    "llm-sentence-transformers>=0.2",
+    "llm>=0.19.1",
+    "llm-gpt4all>=0.4",
 ]
 
 [dependency-groups]

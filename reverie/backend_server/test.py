@@ -6,11 +6,11 @@ Description: Wrapper functions for calling OpenAI APIs.
 
 from __future__ import annotations
 
-import openai
-from utils import *
+from helpers.llm import create_llm
+from helpers.config import BackendConfig
 
 
-openai.api_key = openai_api_key
+model = create_llm(BackendConfig())
 
 
 def ChatGPT_request(prompt):
@@ -27,15 +27,7 @@ def ChatGPT_request(prompt):
       a str of GPT-3's response.
     """
     # temp_sleep()
-    try:
-        completion = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt}]
-        )
-        return completion["choices"][0]["message"]["content"]
-
-    except:
-        print("ChatGPT ERROR")
-        return "ChatGPT ERROR"
+    return model.generate(prompt)
 
 
 prompt = """

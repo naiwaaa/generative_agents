@@ -3,6 +3,7 @@
 File: print_prompt.py
 Description: For printing prompts when the setting for verbose is set to True.
 """
+
 from __future__ import annotations
 
 import sys
