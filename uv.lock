@@ -215,6 +215,7 @@ dependencies = [
     { name = "django-storages" },
     { name = "llm" },
     { name = "llm-gpt4all" },
+    { name = "llm-llamafile" },
     { name = "llm-sentence-transformers" },
     { name = "loguru" },
     { name = "numpy" },
@@ -236,6 +237,7 @@ requires-dist = [
     { name = "django-storages", specifier = ">=1.14.4" },
     { name = "llm", specifier = ">=0.19.1" },
     { name = "llm-gpt4all", specifier = ">=0.4" },
+    { name = "llm-llamafile", specifier = ">=0.1" },
     { name = "llm-sentence-transformers", specifier = ">=0.2" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "numpy", specifier = ">=2.1.3" },
@@ -414,6 +416,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/81/a7/1e33cc26e6489678f130c5539e011788e1d20b2ceec3414d3ac6012355f0/llm_gpt4all-0.4.tar.gz", hash = "sha256:3e498ae6fa0d146d11cf1885e24cc218b77280102d5cfe666d6732c6fdc59927", size = 11069 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1a/aa/9b130e426bec78591378c78227983c9dcc635af9847b1eca3eee01afb5f1/llm_gpt4all-0.4-py3-none-any.whl", hash = "sha256:4f7dd866025bd7b804aab81b85e9f5a5ac45171e6fd52b3c4fb75f30e762b384", size = 10914 },
+]
+
+[[package]]
+name = "llm-llamafile"
+version = "0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "llm" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cb/91/1b7e844fddccd7e1b03ffecb2bfd70bb2eca0383d19604df21015cded932/llm_llamafile-0.1.tar.gz", hash = "sha256:e7fee71cac12f1b3230b47f1aa15e8872c8efd764ac886a90a20ab11e72e7549", size = 6210 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/11/cd/500b8c2ecf640ca13178ceebfb1de6576b4ee642022b7c41634e4dde0a44/llm_llamafile-0.1-py3-none-any.whl", hash = "sha256:85feab4b87c24f060a920101c1700a7fb00ea8b9b6b0ee9bf423c8e83286e5e2", size = 6541 },
 ]
 
 [[package]]

@@ -1,0 +1,13 @@
+{
+  "curr_time": "February 13, 2023, 00:00:00",
+  "fork_sim_code": "loveville",
+  "maze_name": "the_ville",
+  "persona_names": [
+    "Isabella Rodriguez",
+    "Maria Lopez",
+    "Klaus Mueller"
+  ],
+  "sec_per_step": 10,
+  "start_date": "February 13, 2023",
+  "step": 0
+}

@@ -16,6 +16,7 @@ dependencies = [
     "llm-sentence-transformers>=0.2",
     "llm>=0.19.1",
     "llm-gpt4all>=0.4",
+    "llm-llamafile>=0.1",
 ]
 
 [dependency-groups]
